@@ -8,7 +8,7 @@ def main():
     url = "https://nhlstatisticsforohtu.herokuapp.com/players"
     response = requests.get(url).json()
 
-    print(f"Players from {nationality} {datetime.now()}")
+    print(f"Players from {nationality} {datetime.now()}\n")
 
     players = []
 
@@ -25,7 +25,7 @@ def main():
 
         players.append(player)
 
-    print("Oliot:")
+    players.sort(reverse=True, key=lambda player: player.goals + player.assists)
 
     for player in players:
         print(player)
