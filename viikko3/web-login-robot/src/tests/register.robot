@@ -1,5 +1,6 @@
 *** Settings ***
 Resource  resource.robot
+Resource  login_resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
 Test Setup  Create User And Go To Register Page
@@ -34,29 +35,19 @@ Register With Nonmatching Password And Password Confirmation
     Submit Credentials
     Register Should Fail With Message  Password and confirmation must match
 
+Login After Successful Registration
+    Register User  user  passw0rd
+    Login User  user  passw0rd
+    Main Page Should Be Open
+
+Login After Failed Registration
+    Register User  user  password
+    Login User  user  password
+    Login Should Fail With Message  Invalid username or password
+
 *** Keywords ***
-Register Should Succeed
-    Welcome Page Should Be Open
-
-Register Should Fail With Message
-    [Arguments]  ${message}
-    Register Page Should Be Open
-    Page Should Contain  ${message}
-
 Submit Credentials
     Click Button  Register
-
-Set Username
-    [Arguments]  ${username}
-    Input Text  username  ${username}
-
-Set Password
-    [Arguments]  ${password}
-    Input Password  password  ${password}
-
-Set Password Confirmation
-    [Arguments]  ${password_confirmation}
-    Input Password  password_confirmation  ${password_confirmation}
 
 Create User And Go To Register Page
     Create User  kalle  kalle123
