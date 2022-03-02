@@ -21,6 +21,7 @@ class Ostoskori:
 
     def lisaa_tuote(self, lisattava: Tuote):
         nimi = lisattava.nimi()
+
         if nimi in self.ostokset:
             self.ostokset[nimi].muuta_lukumaaraa(1)
         else:
