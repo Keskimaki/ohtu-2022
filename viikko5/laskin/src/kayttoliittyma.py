@@ -19,7 +19,7 @@ class Kayttoliittyma:
             Komento.SUMMA: Summa(sovellus, self._lue_syote),
             Komento.EROTUS: Erotus(sovellus, self._lue_syote),
             Komento.NOLLAUS: Nollaus(sovellus),
-            Komento.KUMOA: Kumoa(sovellus, self._lue_syote)
+            Komento.KUMOA: Kumoa(sovellus)
         }
 
     def kaynnista(self):
